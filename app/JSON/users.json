@@ -1,0 +1,50 @@
+[
+    {
+        "username": "Osebek", 
+        "id": "123",
+        "password": "basdfad",
+        "name": "Nejc",
+        "lastName": "Vesel",
+        "e-mail": "nejc.vesel@gmail.com",
+        "description": "Student",
+        "imageURL":"/avatars/123.jpeg",
+        "birthday":"21.01.1992",
+        "school": "Univerza v Ljubljani",
+        "faculty": "Fakulteta za Racunalnistvo in Informatiko",
+        "module": "Racunalnisto in Matematika",
+        "grade": 3
+    },
+
+    {
+        "username": "Kolesar", 
+        "id": "544",
+        "password": "sadas",
+        "name": "Rok",
+        "lastName": "Kolesa",
+        "e-mail": "rok.kolesa@gmail.com",
+        "description": "Student",
+        "imageURL":"/avatars/544.jpeg",
+        "birthday":"12.11.1992",
+        "school": "Univerza v Ljubljani",
+        "faculty": "Fakulteta za Racunalnistvo in Informatiko",
+        "module": "Racunalnisto in Matematika",
+        "grade": 3
+    },
+
+    {
+        "username": "Docikiler", 
+        "id": "677",
+        "password": "sadasdadcv",
+        "name": "Domen",
+        "lastName": "Kren",
+        "e-mail": "dk.nexus@gmail.com",
+        "description": "Student",
+        "imageURL":"/avatars/677.jpeg",
+        "birthday":"16.10.1992",
+        "school": "Univerza v Ljubljani",
+        "faculty": "Fakulteta za Racunalnistvo in Informatiko",
+        "module": "Racunalnisto in Matematika",
+        "grade": 3
+    }
+]
+    
