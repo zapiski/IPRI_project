@@ -10,7 +10,8 @@ angular.module('myApp', [
   'myApp.controllers'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
-  $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.when('/main', {templateUrl: 'partials/main.html', controller: 'main'});
+  $routeProvider.when('/browse', {templateUrl: 'partials/browse.html', controller: 'browse'});
+  $routeProvider.when('/user', {templateUrl: 'partials/user.html', controller: 'user'});
+  $routeProvider.otherwise({redirectTo: '/main'});
 }]);
