@@ -1,0 +1,41 @@
+[
+    {
+        "name": "zapiskiAlgebra",
+        "id": "1666",
+        "fileURL": "files/zapiskiAlgebra_1666.pdf",
+        "dateUploaded": "10.12.2013",
+        "dateModified": "12.12.2013",
+        "userUploaded": "123",
+        "class": "Algebra",
+        "handwritten": true,
+        "description": "To so moji zapiski za algebro, ker itak noben ne hod", 
+        "rating": 4
+    },
+
+    {
+        "name": "zapiskiAnaliza",
+        "id": "67889",
+        "fileURL": "files/zapiskiAnaliza_67889.pdf",
+        "dateUploaded": "15.11.2013",
+        "dateModified": "1.12.2013",
+        "userUploaded": "544",
+        "class": "Analiza",
+        "handwritten": false,
+        "description": "Da se boste lazje ucil :)", 
+        "rating": 5
+    },
+
+     {
+        "name": "zapiskiPPJ",
+        "id": "999",
+        "fileURL": "files/zapiskiPPJ_999.pdf",
+        "dateUploaded": "5.1.2014",
+        "dateModified": "15.1.2014",
+        "userUploaded": "123",
+        "class": "Algebra",
+        "handwritten": false,
+        "description": "Moji zapiski za PPJ, manjkal sem parkrat, sam vecina je ", 
+        "rating": 2
+    }
+]
+    
