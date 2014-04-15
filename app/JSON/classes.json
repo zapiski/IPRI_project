@@ -1,0 +1,31 @@
+[
+ {
+ 	"name": "Afina in projektivna Geometrija",
+ 	"university": "Univerza v Ljubljani",
+ 	"grades": [2,3,4,5],
+ 	"allowedFaculties": ["Fakulteta za Racunalnistvo in Informatiko", "Fakuleteta za matematiko in fiziko"],
+ 	"proffesor": "Janez Novak",
+ 	"teachersAssistent": "DJ KaliJ",
+ 	"creditPoints": 6
+ },
+  {
+ 	"name": "Osnove podatkovnih baz",
+ 	"university": "Univerza v Ljubljani",
+ 	"grades": [1,2],
+ 	"allowedFaculties": ["Fakulteta za Racunalnistvo in Informatiko", "Fakuleteta za Upravo"],
+ 	"proffesor": "Marjan Marijanovic",
+ 	"teachersAssistent": "Smiljan Mirkovic",
+ 	"creditPoints": 5
+ },
+
+   {
+ 	"name": "Advanced Fluid Dynamics",
+ 	"university": "Stanford University",
+ 	"grades": [3],
+ 	"allowedFaculties": ["all"],
+ 	"proffesor": "John McClane",
+ 	"teachersAssistent": "Dzikasvili Mitovonov",
+ 	"creditPoints": 10
+ },
+
+]
