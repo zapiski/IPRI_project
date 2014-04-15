@@ -15,7 +15,7 @@
   "scripts": {
     "postinstall": "bower install",
 
-    "start": "http-server",
+    "start": "http-server -p 8000",
     "test": "karma start test/karma.conf.js",
 
     "update-webdriver": "webdriver-manager update",
