@@ -17,7 +17,6 @@
  	"teachersAssistent": "Smiljan Mirkovic",
  	"creditPoints": 5
  },
-
    {
  	"name": "Advanced Fluid Dynamics",
  	"university": "Stanford University",
@@ -26,6 +25,5 @@
  	"proffesor": "John McClane",
  	"teachersAssistent": "Dzikasvili Mitovonov",
  	"creditPoints": 10
- },
-
+ }
 ]
