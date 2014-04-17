@@ -1,11 +1,24 @@
 <h1 class="page-header">Welcome</h1>
 <p>ClassNotes is a web application designed entirely for students. Many students either don't have the necessary time to go to all the classes either they were sick or they think of some other excuse not to go to class. ClassNotes allows students to interact with each other and share their notes from specific classes. Users can sign in to join different groups, i.e. their student year group, create one or just browse all the notes other users have uploaded. You don't even have to sign in to browse the public notes. The private ones will of course stay hidden to only a few exclusive users. ClassNotes also supports Facebook for fast and easy sign up. Users can also rate and comment each note in case there are some errors, missing facts or just to say thank you and give the author a nice compliment. Some users can also get a special title of "tutor". They are considered to have good notes or are the ones who have better grades, which means they can also help with explanations of assignments. To sum up, the general idea is to create a community of all students to help each other via the internet. This way the communication is faster and all students can learn from the same source, which greatly increases the chances of passing the final exam.</p>
-<div ng-controller="main">
- 
-  <ul>
-    <li ng-repeat="class in classes">
-      {{class.name}}
-    </li>
-  </ul>
- 
+
+<div class="container" ng-controller="main">
+<div class="row">
+<div class="col-md-4"><h1>Available classes:</h1></div>
+<div class="col-md-4"></div>
+<div class="col-md-4"></div>
 </div>
+<div class="row" ng-repeat="class in classes">
+<div class="col-md-6">
+	<div class="list-group">
+
+	  <a href="#" class="list-group-item active">
+	    <h4 class="list-group-item-heading">{{class.name}}</h4>
+	    <p class="list-group-item-text">
+			Professor: {{class.proffesor}}<br>
+			Teacher's assistant: {{class.teachersAssistent}}
+	    </p>
+	  </a>
+	</div>
+	</div>
+ </div> 
+ </div>
