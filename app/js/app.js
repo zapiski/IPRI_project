@@ -7,7 +7,8 @@ angular.module('myApp', [
   'myApp.filters',
   'myApp.services',
   'myApp.directives',
-  'myApp.controllers'
+  'myApp.controllers',
+  'myApp.animations'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/main', {templateUrl: 'partials/main.html', controller: 'main'});
