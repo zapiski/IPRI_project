@@ -4,14 +4,24 @@
 <div class="container" ng-controller="main">
 <div class="row">
 <div class="col-md-4"><h1>Available classes:</h1></div>
-<div class="col-md-4"></div>
+<div class="col-md-4">
+	
+
+Search:   <input ng-model="query">
+<select ng-model="orderProp">
+    <option value="name">Alphabetical</option>
+    <option value="university">University name</option>
+    <option value="proffesor">Professor</option>
+    <option value="creditPoints">Credit points</option>
+  </select>
+</div>
 <div class="col-md-4"></div>
 </div>
-<div class="row" ng-repeat="class in classes">
+<div class="row" ng-repeat="class in classes | filter: query | orderBy: orderProp">
 <div class="col-md-6">
 	<div class="list-group">
 
-	  <a href="#" class="list-group-item active">
+	  <a href="#browse" class="list-group-item active">
 	    <h4 class="list-group-item-heading">{{class.name}}</h4>
 	    <p class="list-group-item-text">
 			Professor: {{class.proffesor}}<br>

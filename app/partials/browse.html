@@ -1,8 +1,19 @@
 
 <div class="container" ng-controller="browse">
      
+<p>Search notes</p>   <input ng-model="query">
 
-      <div class="row" ng-repeat="note in notes">
+<select ng-model="orderProp">
+    <option value="name">Alphabetical</option>
+    <option value="dateUploaded">Newest</option>
+    <option value="dateModified">Last modified</option>
+    <option value="class">Class</option>
+    <option value="handwritten">Handwritten</option>
+    <option value="rating">Rating</option>
+
+  </select>
+
+      <div class="row" ng-repeat="note in notes | filter: query | orderBy: orderProp">
       	        <div class="col-md-10">
 				
 
