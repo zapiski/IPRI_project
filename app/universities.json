@@ -1,0 +1,147 @@
+{
+    "name": "Universities",
+    "children": [
+        {
+            "name": "University of Ljubljana",
+            "children": [
+                {
+                    "name": "Faculty for Mathematics and Physics",
+                    "children": [
+                        {
+                            "name": "ISRM",
+                            "children": [
+                                {
+                                    "name": "LA",
+                                    "children": [
+                                        {
+                                            "name": "Notes La"
+                                        },
+                                        {
+                                            "name": "Notes LA 1. year"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+					]
+                    },
+                    {
+                        "name": "Faculty for Computer Science and Informatics",
+                        "children": [
+                            {
+                                "name": "ISRM",
+                                "children": [
+                                    {
+                                        "name": "LA",
+                                        "children": [
+                                            {
+                                                "name": "Notes La"
+                                            },
+                                            {
+                                                "name": "Notes LA 1. year"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "UNI",
+                                "children": [
+                                    {
+                                        "name": "OP",
+                                        "children": [
+                                            {
+                                                "name": "Notes Op"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Faculty of Engineering",
+                        "children": [
+                            {
+                                "name": "UNI",
+                                "children": [
+                                    {
+                                        "name": "OR",
+                                        "children": [
+                                            {
+                                                "name": "Notes Or"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Medical Faculty",
+                        "children": [
+                            {
+                                "name": "UNI",
+                                "children": [
+                                    {
+                                        "name": "Ha",
+                                        "children": [
+                                            {
+                                                "name": "Notes Ha"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "University of Primorska",
+                "children": [
+                    {
+                        "name": "Faculty of Engineering",
+                        "children": [
+                            {
+                                "name": "UNI",
+                                "children": [
+                                    {
+                                        "name": "OR",
+                                        "children": [
+                                            {
+                                                "name": "Notes Or"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "University of Maribor",
+                "children": [
+                    {
+                        "name": "Faculty of Engineering",
+                        "children": [
+                            {
+                                "name": "UNI",
+                                "children": [
+                                    {
+                                        "name": "OR",
+                                        "children": [
+                                            {
+                                                "name": "Notes Or"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
