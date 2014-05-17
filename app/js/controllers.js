@@ -162,9 +162,10 @@ var users = new Firebase("https://classnotes.firebaseio.com/users");
     }
  }); 
    $scope.loginPW = function() {
+    console.log($scope.login.email);
     auth.login('password', {
-    email: $scope.user.email,
-    password: $scope.user.password,
+    email: $scope.login.email,
+    password: $scope.login.password,
     rememberMe: true
     });
 
@@ -175,7 +176,6 @@ var users = new Firebase("https://classnotes.firebaseio.com/users");
     rememberMe: true,
     scope: 'email,user_likes'
      });
-
 
    }
 
