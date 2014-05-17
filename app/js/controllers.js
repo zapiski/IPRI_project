@@ -1,5 +1,5 @@
 'use strict';
-var isLoggedIn =  true;
+var isLoggedIn =  false;
 
 /* Controllers */
 
@@ -145,6 +145,40 @@ var users = new Firebase("https://classnotes.firebaseio.com/users");
   auth.logout();
   isLoggedIn = false;
  }
+
+  })
+
+.controller('login', function($scope, $firebase){
+ var login = new Firebase("https://classnotes.firebaseio.com");
+ var auth = new FirebaseSimpleLogin(login, function(error, user) {
+  if (error) {
+        console.log("ERROR")
+     console.log(error);
+    } else if (user) {
+      isLoggedIn = true;
+     console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+    } else {
+        console.log("user is logged out");
+    }
+ }); 
+   $scope.loginPW = function() {
+    auth.login('password', {
+    email: $scope.user.email,
+    password: $scope.user.password,
+    rememberMe: true
+    });
+
+   }
+
+    $scope.loginFB = function() {
+    auth.login('facebook', {
+    rememberMe: true,
+    scope: 'email,user_likes'
+     });
+
+
+   }
+
 
   })
  .controller('navBarController', function($scope, $firebase){
