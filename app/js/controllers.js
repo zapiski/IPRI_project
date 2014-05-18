@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-
+var user_id;
 angular.module('myApp.controllers', [])
 	.controller('main', function($scope, $firebase) {
 		var classes = new Firebase("https://classnotes.firebaseio.com/classes");
@@ -37,8 +37,10 @@ angular.module('myApp.controllers', [])
 	})
 	.controller('user', function($scope, $firebase, $window) {
 		var users = new Firebase("https://classnotes.firebaseio.com/users");
-		var auth = new FirebaseSimpleLogin(users, function(error, user){
+		var dataRef = new Firebase("https://classnotes.firebaseio.com");
+		var auth = new FirebaseSimpleLogin(dataRef, function(error, user){
 			if (user){
+				user_id = user.uid;
 			} else {
 				console.log("User is not logged in! Redirecting to main page.");
 				$window.location.href = '#/main';
@@ -69,8 +71,9 @@ angular.module('myApp.controllers', [])
 				// an error occurred while attempting login
 				console.log(error);
 			} else if (user) {
+				$window.location.href = '#';
 				// user authenticated with Firebase
-				$window.location.href = '#/main';
+				
 				if (user.provider === "facebook"){
 					var users = new Firebase("https://classnotes.firebaseio.com/users");
 					$scope.users = $firebase(users);
@@ -79,6 +82,8 @@ angular.module('myApp.controllers', [])
 						userid: user.uid
 					});
 				}
+				user_id = user.uid;
+				$scope.isUserLoggedIn = true;
 				console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
 				console.log("User is logged in and cannot sign up again!");
 				
@@ -89,20 +94,27 @@ angular.module('myApp.controllers', [])
 		$scope.signup = function(){
 			auth.createUser($scope.user.email, $scope.user.password, function(error, user) {
 				if (!error) {
+					
 					console.log('User Id: ' + user.uid + ', Email: ' + user.email);
 					var users = new Firebase("https://classnotes.firebaseio.com/users");
 					$scope.users = $firebase(users);
-					$scope.users.$add({ 
+					var userProperties = {
 						email: $scope.user.email,
-						password: $scope.user.password
-					});
-					//$scope.isUserLoggedIn = true;
+					}
+					if ($scope.user.description !== undefined){
+						userProperties.description = $scope.user.description;
+					}else{
+						userProperties.description = "";
+					}
+					$scope.users.$add(userProperties);
 					auth.login('password', {
 						email: $scope.user.email,
 						password: $scope.user.password,
 						rememberMe: true
 					});
-					$window.location.href = '#/main';
+				}else{
+					console.log(error);
+					alert("There was an error creating a user! The email is probably already in use!");
 				}
 			});
 		};
@@ -145,22 +157,22 @@ angular.module('myApp.controllers', [])
 		var login = new Firebase("https://classnotes.firebaseio.com");
 		var auth = new FirebaseSimpleLogin(login, function(error, user) {
 			if (error) {
-				console.log("ERROR")
 				console.log(error);
 			} else if (user) {
+				user_id = user.uid;
 				console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+				$window.location.href = '#';
 			} else {
 				console.log("user is logged out");
 			}
 		}); 
 		$scope.loginPW = function() {
-			console.log($scope.login.email);
 			auth.login('password', {
 				email: $scope.login.email,
 				password: $scope.login.password,
 				rememberMe: true
 			});
-			$window.location.href = '#/main';
+			
 		}
 		$scope.loginFB = function() {
 			auth.login('facebook', {
@@ -169,18 +181,18 @@ angular.module('myApp.controllers', [])
 			});
 		}
 	})
-	.controller('navBarController', function($scope, $firebase, $firebaseSimpleLogin){
+	.controller('navBarController', function($scope, $firebase, $firebaseSimpleLogin, $window){
 		var dataRef = new Firebase("https://classnotes.firebaseio.com");
-		console.log($firebaseSimpleLogin(dataRef).$getCurrentUser());
 		var auth = new FirebaseSimpleLogin(dataRef, function(error, user){
 			if (user){
+				user_id = user.uid;
 				$scope.isUserLoggedIn = true;
 			} else {
 				$scope.isUserLoggedIn = false;
 			}
 		});
-		console.log(auth);
 		$scope.logout = function(){
 			auth.logout();
+			$window.location.href = '#';
 		}
 	});
