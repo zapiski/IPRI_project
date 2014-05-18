@@ -180,6 +180,18 @@ angular.module('myApp.controllers', [])
 				scope: 'email,user_likes'
 			});
 		}
+		$scope.loginGOOGLE = function(){
+			auth.login('google', {
+			  rememberMe: true,
+			  scope: 'https://www.googleapis.com/auth/plus.login'
+			});
+		}
+		$scope.loginTWITTER = function(){
+			auth.login('twitter', {
+			  rememberMe: true
+			});
+		}
+		
 	})
 	.controller('navBarController', function($scope, $firebase, $firebaseSimpleLogin, $window){
 		var dataRef = new Firebase("https://classnotes.firebaseio.com");
