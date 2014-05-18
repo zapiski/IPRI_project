@@ -35,8 +35,15 @@ angular.module('myApp.controllers', [])
 			})
 		}
 	})
-	.controller('user', function($scope, $firebase) {
+	.controller('user', function($scope, $firebase, $window) {
 		var users = new Firebase("https://classnotes.firebaseio.com/users");
+		var auth = new FirebaseSimpleLogin(users, function(error, user){
+			if (user){
+			} else {
+				console.log("User is not logged in! Redirecting to main page.");
+				$window.location.href = '#/main';
+			}
+		});
 		$scope.users = $firebase(users);
 		$scope.addUser = function() {
 			$scope.users.$add({ birthday: $scope.bd, 
@@ -55,7 +62,7 @@ angular.module('myApp.controllers', [])
 			})
 		}
 	})
-	.controller('signup', function($scope, $firebase){
+	.controller('signup', function($scope, $firebase, $window){
 		var signup = new Firebase("https://classnotes.firebaseio.com");
 		var auth = new FirebaseSimpleLogin(signup, function(error, user) {
 			if (error) {
@@ -63,6 +70,7 @@ angular.module('myApp.controllers', [])
 				console.log(error);
 			} else if (user) {
 				// user authenticated with Firebase
+				$window.location.href = '#/main';
 				if (user.provider === "facebook"){
 					var users = new Firebase("https://classnotes.firebaseio.com/users");
 					$scope.users = $firebase(users);
@@ -72,6 +80,8 @@ angular.module('myApp.controllers', [])
 					});
 				}
 				console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+				console.log("User is logged in and cannot sign up again!");
+				
 			} else {
 				// user is logged out
 			}
@@ -86,6 +96,13 @@ angular.module('myApp.controllers', [])
 						email: $scope.user.email,
 						password: $scope.user.password
 					});
+					//$scope.isUserLoggedIn = true;
+					auth.login('password', {
+						email: $scope.user.email,
+						password: $scope.user.password,
+						rememberMe: true
+					});
+					$window.location.href = '#/main';
 				}
 			});
 		};
@@ -162,6 +179,7 @@ angular.module('myApp.controllers', [])
 				$scope.isUserLoggedIn = false;
 			}
 		});
+		console.log(auth);
 		$scope.logout = function(){
 			auth.logout();
 		}
