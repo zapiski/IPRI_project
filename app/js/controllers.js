@@ -124,7 +124,7 @@ angular.module('myApp.controllers', [])
 			auth.logout();
 		}
 	})
-	.controller('login', function($scope, $firebase){
+	.controller('login', function($scope, $firebase, $window){
 		var login = new Firebase("https://classnotes.firebaseio.com");
 		var auth = new FirebaseSimpleLogin(login, function(error, user) {
 			if (error) {
@@ -143,6 +143,7 @@ angular.module('myApp.controllers', [])
 				password: $scope.login.password,
 				rememberMe: true
 			});
+			$window.location.href = '#/main';
 		}
 		$scope.loginFB = function() {
 			auth.login('facebook', {
@@ -154,17 +155,14 @@ angular.module('myApp.controllers', [])
 	.controller('navBarController', function($scope, $firebase, $firebaseSimpleLogin){
 		var dataRef = new Firebase("https://classnotes.firebaseio.com");
 		console.log($firebaseSimpleLogin(dataRef).$getCurrentUser());
-		var isLoggedIn = function(){
-			if ($firebaseSimpleLogin(dataRef).$getCurrentUser){
-				return true;
+		var auth = new FirebaseSimpleLogin(dataRef, function(error, user){
+			if (user){
+				$scope.isUserLoggedIn = true;
 			} else {
-				return false;
+				$scope.isUserLoggedIn = false;
 			}
-		};
-		var auth = new FirebaseSimpleLogin(dataRef, function(){});
+		});
 		$scope.logout = function(){
-			console.log("logging out");
 			auth.logout();
 		}
-		$scope.isUserLoggedIn = isLoggedIn();
 	});
