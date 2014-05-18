@@ -71,30 +71,81 @@ angular.module('myApp.controllers', [])
 				// an error occurred while attempting login
 				console.log(error);
 			} else if (user) {
-				$window.location.href = '#';
-				// user authenticated with Firebase
-				
-				if (user.provider === "facebook"){
-					var users = new Firebase("https://classnotes.firebaseio.com/users");
-					$scope.users = $firebase(users);
-					$scope.users.$add({ 
-						accessToken: user.accessToken,
-						userid: user.uid
-					});
-				}
-				user_id = user.uid;
-				$scope.isUserLoggedIn = true;
+				// user authenticated with Firebas
+        if (user.provider === "password")
+        {
+          // treba je naredit da pocekira, ali je user ze v bazi, sem mislil da bo đabe, sam ni, že eno+ uro to guglam pa mi ne ratuje
+          //zdj dodajanje je kul, razen ce ze obstaja, pol ga pac povoz...
+          var users = new Firebase("https://classnotes.firebaseio.com/users/email/"+ user.uid);
+          users.set(
+          {
+            email: user.email,
+            id: user.id
+          })
+
+
+        }
+        else if (user.provider === "facebook")
+        {
+          // treba je naredit da pocekira, ali je user ze v bazi, sem mislil da bo đabe, sam ni, že eno+ uro to guglam pa mi ne ratuje
+          //zdj dodajanje je kul, razen ce ze obstaja, pol ga pac povoz...
+          var users = new Firebase("https://classnotes.firebaseio.com/users/facebook/"+ user.uid);
+          $scope.users = $firebase(users);    
+          console.log(users.child("name"));
+       
+          users.set({
+            name: user.displayName,
+          });
+         
+         }
+
+        
+
+        else if (user.provider === "google")
+        {
+          // treba je naredit da pocekira, ali je user ze v bazi, sem mislil da bo đabe, sam ni, že eno+ uro to guglam pa mi ne ratuje
+          //zdj dodajanje je kul, razen ce ze obstaja, pol ga pac povoz...
+          var users = new Firebase("https://classnotes.firebaseio.com/users/google/"+ user.uid);     
+          $scope.users = $firebase(users);
+  
+          users.set({
+            email: user.email,
+            name: user.displayName
+          });
+
+
+        }
+
+        else if (user.provider === "twitter")
+        {
+          // treba je naredit da pocekira, ali je user ze v bazi, sem mislil da bo đabe, sam ni, že eno+ uro to guglam pa mi ne ratuje
+          //zdj dodajanje je kul, razen ce ze obstaja, pol ga pac povoz...
+          var users = new Firebase("https://classnotes.firebaseio.com/users/twitter/"+ user.uid);     
+          $scope.users = $firebase(users);
+  
+          users.set({
+            twitterUsername: user.username,
+            name: user.displayName
+          });
+
+
+        }
+
+
+        $window.location.href = '#';
+
+
 				console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
-				console.log("User is logged in and cannot sign up again!");
 				
 			} else {
 				// user is logged out
 			}
 		}); 
+
+
 		$scope.signup = function(){
 			auth.createUser($scope.user.email, $scope.user.password, function(error, user) {
 				if (!error) {
-					
 					console.log('User Id: ' + user.uid + ', Email: ' + user.email);
 					var users = new Firebase("https://classnotes.firebaseio.com/users");
 					$scope.users = $firebase(users);
@@ -106,7 +157,6 @@ angular.module('myApp.controllers', [])
 					}else{
 						userProperties.description = "";
 					}
-					$scope.users.$add(userProperties);
 					auth.login('password', {
 						email: $scope.user.email,
 						password: $scope.user.password,
@@ -118,18 +168,15 @@ angular.module('myApp.controllers', [])
 				}
 			});
 		};
+
 		$scope.signupgoogle = function(){
 			auth.login('google', {
 				rememberMe: true,
-				scope: 'https://www.googleapis.com/auth/plus.login'
+				scope: 'profile,email'
 			});
-			var users = new Firebase("https://classnotes.firebaseio.com/users");
-			$scope.users = $firebase(users);
-			$scope.users.$add({ 
-				email: $scope.auth.email,
-				password: $scope.auth.uid
-			});
+
 		};
+
 		$scope.signupfb = function(){
 			auth.login('facebook', {
 				rememberMe: true,
@@ -145,14 +192,15 @@ angular.module('myApp.controllers', [])
 			var users = new Firebase("https://classnotes.firebaseio.com/users");
 			$scope.users = $firebase(users);
 			$scope.users.$add({ 
-				email: $scope.auth.email,
-				password: $scope.auth.uid
+				email: auth.email,
+				password: auth.uid
 			});
 		};
 		$scope.logout = function(){
 			auth.logout();
 		}
 	})
+
 	.controller('login', function($scope, $firebase, $window){
 		var login = new Firebase("https://classnotes.firebaseio.com");
 		var auth = new FirebaseSimpleLogin(login, function(error, user) {
@@ -167,7 +215,7 @@ angular.module('myApp.controllers', [])
 			}
 		}); 
 		$scope.loginPW = function() {
-			auth.login('password', {
+			 auth.login('password', {
 				email: $scope.login.email,
 				password: $scope.login.password,
 				rememberMe: true
