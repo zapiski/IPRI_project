@@ -24,6 +24,7 @@
    <div class="navbar-collapse collapse" ng-controller="navBarController">
           <ul class="nav navbar-nav navbar-right" ng-show="isUserLoggedIn">
             <li><a href="#/user">Profile</a></li>
+			<li><a href="#/main" ng-click="logout()">Log out</a></li>
           </ul>
     <ul class="nav navbar-nav navbar-right" ng-hide="isUserLoggedIn">
             <li><a href="#/signup">Sign up!</a></li>
@@ -77,6 +78,5 @@
   <script src="js/directives.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/docs.min.js"></script>
-  <script src="js/d3.min.js"></script>
 </body>
 </html>
