@@ -43,7 +43,7 @@ angular.module('myApp.controllers', [])
 				user_id = user.uid;
 			} else {
 				console.log("User is not logged in! Redirecting to main page.");
-				$window.location.href = '#/main';
+				$window.location.href = '#/main/';
 			}
 		});
 		$scope.users = $firebase(users);
@@ -71,7 +71,7 @@ angular.module('myApp.controllers', [])
 				// an error occurred while attempting login
 				console.log(error);
 			} else if (user) {
-				$window.location.href = '#';
+				$window.location.href = '#/';
 				// user authenticated with Firebase
 				
 				if (user.provider === "facebook"){
@@ -121,19 +121,20 @@ angular.module('myApp.controllers', [])
 		$scope.signupgoogle = function(){
 			auth.login('google', {
 				rememberMe: true,
-				scope: 'https://www.googleapis.com/auth/plus.login'
+				scope: 'profile,email'
 			});
-			var users = new Firebase("https://classnotes.firebaseio.com/users");
+			var users = new Firebase("https://classnotes.firebaseio.com/users/email");
 			$scope.users = $firebase(users);
+			//var users_database = $scope.users.$child("google");
+			console.log($scope.users);
+			for (var uporabnik in $scope.users)
+			{
+				console.log(uporabnik);
+			}
+
 			$scope.users.$add({ 
 				email: $scope.auth.email,
 				password: $scope.auth.uid
-			});
-		};
-		$scope.signupfb = function(){
-			auth.login('facebook', {
-				rememberMe: true,
-				scope: 'email,user_likes'
 			});
 		};
 
@@ -153,7 +154,7 @@ angular.module('myApp.controllers', [])
 			auth.logout();
 		}
 	})
-	.controller('login', function($scope, $firebase, $window){
+	.controller('signin', function($scope, $firebase, $window){
 		var login = new Firebase("https://classnotes.firebaseio.com");
 		var auth = new FirebaseSimpleLogin(login, function(error, user) {
 			if (error) {
@@ -161,7 +162,7 @@ angular.module('myApp.controllers', [])
 			} else if (user) {
 				user_id = user.uid;
 				console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
-				$window.location.href = '#';
+				$window.location.href = '#/main/';
 			} else {
 				console.log("user is logged out");
 			}
@@ -205,6 +206,6 @@ angular.module('myApp.controllers', [])
 		});
 		$scope.logout = function(){
 			auth.logout();
-			$window.location.href = '#';
+			$window.location.href = '#/main/';
 		}
 	});
