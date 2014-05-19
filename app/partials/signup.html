@@ -1,5 +1,36 @@
-<form>
- Email: <input type="text" name="email" ng-model="user.email"><br>
- Password: <input type="password" name="password"  ng-model="user.password"><br>
- <button ng-click="signup()">Sign Up</button>
+<div class="container">
+<div class="row">
+  <div class="col-md-8">
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" ng-model="user.email" class="form-control" id="inputEmail3" placeholder="Email" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" ng-model="user.password" class="form-control" id="inputPassword3" placeholder="Password" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputDescription" class="col-sm-2 control-label">Desription</label>
+    <div class="col-sm-10">
+      <input type="text" ng-model="user.description" class="form-control" id="inputDescription" placeholder="Desription">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button ng-click="signup()" class="btn btn-default">Sign up!</button>
+      <button type = "submit" ng-click="signupfb()" class="btn btn-default">Sign up with FB</button>
+      <button type = "submit" ng-click="signupgoogle()" class="btn btn-default">Sign up with Google</button>
+      <button type = "submit" ng-click="signuptwitter()" class="btn btn-default">Sign up with Twitter</button>
+
+    </div>
+  </div>
 </form>
+</div>
+  <div class="col-md-4"></div>
+</div>
+</div>

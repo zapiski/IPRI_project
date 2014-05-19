@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-
+var user_id;
 angular.module('myApp.controllers', [])
 	.controller('main', function($scope, $firebase) {
 		var classes = new Firebase("https://classnotes.firebaseio.com/classes");
@@ -35,8 +35,17 @@ angular.module('myApp.controllers', [])
 			})
 		}
 	})
-	.controller('user', function($scope, $firebase) {
+	.controller('user', function($scope, $firebase, $window) {
 		var users = new Firebase("https://classnotes.firebaseio.com/users");
+		var dataRef = new Firebase("https://classnotes.firebaseio.com");
+		var auth = new FirebaseSimpleLogin(dataRef, function(error, user){
+			if (user){
+				user_id = user.uid;
+			} else {
+				console.log("User is not logged in! Redirecting to main page.");
+				$window.location.href = '#/main/';
+			}
+		});
 		$scope.users = $firebase(users);
 		$scope.addUser = function() {
 			$scope.users.$add({ birthday: $scope.bd, 
@@ -55,14 +64,16 @@ angular.module('myApp.controllers', [])
 			})
 		}
 	})
-	.controller('signup', function($scope, $firebase){
+	.controller('signup', function($scope, $firebase, $window){
 		var signup = new Firebase("https://classnotes.firebaseio.com");
 		var auth = new FirebaseSimpleLogin(signup, function(error, user) {
 			if (error) {
 				// an error occurred while attempting login
 				console.log(error);
 			} else if (user) {
+				$window.location.href = '#/';
 				// user authenticated with Firebase
+				
 				if (user.provider === "facebook"){
 					var users = new Firebase("https://classnotes.firebaseio.com/users");
 					$scope.users = $firebase(users);
@@ -71,7 +82,11 @@ angular.module('myApp.controllers', [])
 						userid: user.uid
 					});
 				}
+				user_id = user.uid;
+				$scope.isUserLoggedIn = true;
 				console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+				console.log("User is logged in and cannot sign up again!");
+				
 			} else {
 				// user is logged out
 			}
@@ -79,32 +94,47 @@ angular.module('myApp.controllers', [])
 		$scope.signup = function(){
 			auth.createUser($scope.user.email, $scope.user.password, function(error, user) {
 				if (!error) {
+					
 					console.log('User Id: ' + user.uid + ', Email: ' + user.email);
 					var users = new Firebase("https://classnotes.firebaseio.com/users");
 					$scope.users = $firebase(users);
-					$scope.users.$add({ 
+					var userProperties = {
 						email: $scope.user.email,
-						password: $scope.user.password
+					}
+					if ($scope.user.description !== undefined){
+						userProperties.description = $scope.user.description;
+					}else{
+						userProperties.description = "";
+					}
+					$scope.users.$add(userProperties);
+					auth.login('password', {
+						email: $scope.user.email,
+						password: $scope.user.password,
+						rememberMe: true
 					});
+				}else{
+					console.log(error);
+					alert("There was an error creating a user! The email is probably already in use!");
 				}
 			});
 		};
 		$scope.signupgoogle = function(){
 			auth.login('google', {
 				rememberMe: true,
-				scope: 'https://www.googleapis.com/auth/plus.login'
+				scope: 'profile,email'
 			});
-			var users = new Firebase("https://classnotes.firebaseio.com/users");
+			var users = new Firebase("https://classnotes.firebaseio.com/users/email");
 			$scope.users = $firebase(users);
+			//var users_database = $scope.users.$child("google");
+			console.log($scope.users);
+			for (var uporabnik in $scope.users)
+			{
+				console.log(uporabnik);
+			}
+
 			$scope.users.$add({ 
 				email: $scope.auth.email,
 				password: $scope.auth.uid
-			});
-		};
-		$scope.signupfb = function(){
-			auth.login('facebook', {
-				rememberMe: true,
-				scope: 'email,user_likes'
 			});
 		};
 
@@ -124,26 +154,26 @@ angular.module('myApp.controllers', [])
 			auth.logout();
 		}
 	})
-	.controller('login', function($scope, $firebase, $window){
+	.controller('signin', function($scope, $firebase, $window){
 		var login = new Firebase("https://classnotes.firebaseio.com");
 		var auth = new FirebaseSimpleLogin(login, function(error, user) {
 			if (error) {
-				console.log("ERROR")
 				console.log(error);
 			} else if (user) {
+				user_id = user.uid;
 				console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+				$window.location.href = '#/main/';
 			} else {
 				console.log("user is logged out");
 			}
 		}); 
 		$scope.loginPW = function() {
-			console.log($scope.login.email);
 			auth.login('password', {
 				email: $scope.login.email,
 				password: $scope.login.password,
 				rememberMe: true
 			});
-			$window.location.href = '#/main';
+			
 		}
 		$scope.loginFB = function() {
 			auth.login('facebook', {
@@ -151,12 +181,24 @@ angular.module('myApp.controllers', [])
 				scope: 'email,user_likes'
 			});
 		}
+		$scope.loginGOOGLE = function(){
+			auth.login('google', {
+			  rememberMe: true,
+			  scope: 'https://www.googleapis.com/auth/plus.login'
+			});
+		}
+		$scope.loginTWITTER = function(){
+			auth.login('twitter', {
+			  rememberMe: true
+			});
+		}
+		
 	})
-	.controller('navBarController', function($scope, $firebase, $firebaseSimpleLogin){
+	.controller('navBarController', function($scope, $firebase, $firebaseSimpleLogin, $window){
 		var dataRef = new Firebase("https://classnotes.firebaseio.com");
-		console.log($firebaseSimpleLogin(dataRef).$getCurrentUser());
 		var auth = new FirebaseSimpleLogin(dataRef, function(error, user){
 			if (user){
+				user_id = user.uid;
 				$scope.isUserLoggedIn = true;
 			} else {
 				$scope.isUserLoggedIn = false;
@@ -164,5 +206,6 @@ angular.module('myApp.controllers', [])
 		});
 		$scope.logout = function(){
 			auth.logout();
+			$window.location.href = '#/main/';
 		}
 	});

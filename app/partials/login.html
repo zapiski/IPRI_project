@@ -1,5 +1,6 @@
-<div class="container" ng-controller="login">
-
+<div class="container">
+<div class="row">
+  <div class="col-md-8">
 <form class="form-horizontal" role="form">
   <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
@@ -25,8 +26,13 @@
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" ng-click="loginPW()" class="btn btn-default">Sign in</button>
+      <button type = "submit" ng-click="loginFB()" class="btn btn-default">Sign in with FB</button>
+      <button type = "submit" ng-click="loginGOOGLE()" class="btn btn-default">Sign in with Google</button>
+      <button type = "submit" ng-click="loginTWITTER()" class="btn btn-default">Sign in with Twitter</button>
     </div>
   </div>
 </form>
+</div>
 
+  <div class="col-md-4"></div>
 </div>
