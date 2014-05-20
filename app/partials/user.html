@@ -1,7 +1,7 @@
 
     <div class="container" ng-controller="user">
       <div class="page-header">
-        <h1>Hello, {{users[0].username}}</h1>
+        <h1>Hello, {{userB.email}}</h1>
         <p class="bg-info">Here you can see your profile information.</p>
       </div>
 
@@ -12,43 +12,42 @@
       <br><br>
       <div class="row">
       	        <div class="col-xs-6">
-					<b>Name:</b>{{users[0].name}}
+					<b>Name:</b>{{userB.name}}
       	        </div>
       	        <div class="col-xs-6">
-					<button type="button" class="btn btn-info btn-xs">Edit</button></p>
+					<button type="submit" ng-click="changeName()" class="btn btn-info btn-xs">Edit</button></p>
       	        </div>
 		</div>
       	 <div class="row">
       	        <div class="col-xs-6">
-				<b>Last Name:</b> {{users[0].lastName}}       	        
+				<b>Last Name:</b> {{userB.lastName}}       	        
 				</div>
       	        <div class="col-xs-6">
-					<button type="button" class="btn btn-info btn-xs">Edit</button></p>
+					<button type="submit" ng-click="changeLastName()" class="btn btn-info btn-xs">Edit</button></p>
       	        </div>
       	</div>
 
       	   <div class="row">
       	        <div class="col-xs-6">
-					<b>E-mail:</b> {{users[0].e-mail}}
+					<b>E-mail:</b> {{userB.email}}
       	        </div>
       	        <div class="col-xs-6">
-					<button type="button" class="btn btn-info btn-xs">Edit</button></p>
       	        </div>
 		</div>
       	 <div class="row">
       	        <div class="col-xs-6">
-				<b>Birthday:</b> {{users[0].birthday}}        	        
+				<b>Birthday:</b> {{userB.birthday}}        	        
 				</div>
       	        <div class="col-xs-6">
-					<button type="button" class="btn btn-info btn-xs">Edit</button></p>
+          <button type="submit" ng-click="changeBirthday()" class="btn btn-info btn-xs">Edit</button></p>
       	        </div>
       	</div>
       		 <div class="row">
       	        <div class="col-xs-6">
-				<b>School:</b> {{users[0].school}}       	        
+				<b>School:</b> {{userB.school}}       	        
 				</div>
       	        <div class="col-xs-6">
-					<button type="button" class="btn btn-info btn-xs">Edit</button></p>
+          <button type="submit" ng-click="changeSchool()" class="btn btn-info btn-xs">Edit</button></p>
       	        </div>
       	</div>
         

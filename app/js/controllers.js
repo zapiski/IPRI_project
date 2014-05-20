@@ -33,6 +33,29 @@ angular.module('myApp.controllers', [])
 				console.log("User is not logged in! Redirecting to main page.");
 			}
 		});
+
+		$scope.changeName = function(name)
+		{
+			name = prompt("Please enter your name")
+			Session.changeName(name);
+		};
+
+		$scope.changeLastName = function(lastName)
+		{
+			lastName = prompt("Please enter your last name")
+			Session.changeLastName(lastName);
+		};
+
+		$scope.changeBirthday = function(birthday)
+		{
+			birthday = prompt("Please enter your birthday")
+			Session.changeBirthday(birthday);
+		};
+		$scope.changeSchool = function(school)
+		{
+			school = prompt("Please enter your school")
+			Session.changeSchool(school);
+		};
 	})
 	.controller('signup', function($scope, Session, $firebase, $window){
 		var ref = new Firebase("https://classnotes.firebaseio.com");
@@ -44,9 +67,7 @@ angular.module('myApp.controllers', [])
 				// user authenticated with Firebase
 				$scope.user = user
 				user_id = user.uid;
-				
 				Session.login(user); //dodamo userja
-				
 				console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
 				
 			} else {
@@ -83,17 +104,55 @@ angular.module('myApp.controllers', [])
 				}
 			});
 		};
+
 	})
 	.controller('login', function($scope, Session, $firebase, $window){
 		var login = new Firebase("https://classnotes.firebaseio.com");
+		var users = new Firebase("https://classnotes.firebaseio.com/users");
+		$scope.users = $firebase(users);
+
 		var auth = new FirebaseSimpleLogin(login, function(error, user) {
 			if (error) {
 				console.log(error);
 			} else if (user) {
 				user_id = user.uid;
-				console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
-				
 				Session.login(user); //dodamo userja
+
+				if (user.provider === "facebook")
+				{
+					if (typeof $scope.users[user.uid] === "undefined" )
+					{
+					$scope.users[user.uid] = user;
+					$scope.users.$save(user.uid);
+					Session.changeName(user.thirdPartyUserData.first_name);
+					Session.changeLastName(user.thirdPartyUserData.last_name);
+					Session.changeEmail(user.thirdPartyUserData.email);
+					}
+				}
+
+				else if (user.provider === "google")
+				{
+					if (typeof $scope.users[user.uid] === "undefined" )
+					{
+					$scope.users[user.uid] = user;
+					$scope.users.$save(user.uid);
+					Session.changeName(user.thirdPartyUserData.given_name);
+					Session.changeLastName(user.thirdPartyUserData.family_name);
+					Session.changeEmail(user.thirdPartyUserData.email);
+					}
+
+				}
+
+				else if (user.provider === "twitter")
+				{
+					if (typeof $scope.users[user.uid] === "undefined" )
+					{
+					$scope.users[user.uid] = user;
+					$scope.users.$save(user.uid);
+					Session.changeName(user.thirdPartyUserData.first_name);
+					}
+
+				}
 			
 			} else {
 				console.log("user is logged out");
@@ -139,6 +198,7 @@ angular.module('myApp.controllers', [])
 		});
 		$scope.logout = function(){
 			auth.logout();
+			Session.setAuthenticated(false);
 			$window.location.href = '#/main/';
 		}
 	});
