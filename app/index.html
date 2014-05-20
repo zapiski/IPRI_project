@@ -10,6 +10,9 @@
   <link href="css/animation.css" rel="stylesheet">
 </head>
 <body>
+
+	<div div ng-controller="navBarController">
+
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -21,7 +24,8 @@
           </button>
           <a class="navbar-brand" href="#">ClassNotes</a>
         </div>
-   <div class="navbar-collapse collapse" ng-controller="navBarController">
+		
+   <div class="navbar-collapse collapse" >
           <ul class="nav navbar-nav navbar-right" ng-show="isUserLoggedIn">
             <li><a href="#/user">Profile</a></li>
 			<li><a href="#/main" ng-click="logout()">Log out</a></li>
@@ -45,6 +49,9 @@
             <li><a href="#browse">Faculty for Computer Science and Informatics</a></li>
             <li><a href="#browse">Faculty of Engineering</a></li>
             <li><a href="#browse">Medical Faculty</a></li>
+			<li><p><strong>Auth:</strong> {{auth}}</p></li>
+			<li><p><strong>UserL:</strong> {{userL}}</p></li>
+			<li><p><strong>UserB:</strong> {{userB}}</p></li>
           </ul>
         </div>
 		<div class="view-container">
