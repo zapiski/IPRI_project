@@ -3,23 +3,23 @@
 /* Controllers */
 var user_id;
 angular.module('myApp.controllers', [])
-	.controller('main', function($scope, Session, $firebase) {
-		$scope.auth = Session.isAuthenticated();
+	.controller('main', function($scope, Session, $firebase, $cookieStore) {
+		$scope.auth = $cookieStore.get('loggedIn');
 		$scope.userL = Session.getUserL();
 		$scope.userB = Session.getUserB();
 	
 		var classes = new Firebase("https://classnotes.firebaseio.com/classes");
 		$scope.classes = $firebase(classes);
 	})
-	.controller('browse', function($scope, Session, $firebase) {
-		$scope.auth = Session.isAuthenticated();
+	.controller('browse', function($scope, Session, $firebase, $cookieStore) {
+		$scope.auth = $cookieStore.get('loggedIn');
 		$scope.userL = Session.getUserL();
 		$scope.userB = Session.getUserB();
 	
 		var notes = new Firebase("https://classnotes.firebaseio.com/notes");
 		$scope.notes = $firebase(notes);
 	})
-	.controller('user', function($scope, Session, $firebase, $window) {
+	.controller('user', function($scope, Session, $firebase, $window, $cookieStore) {
 		$scope.auth = Session.isAuthenticated();
 		$scope.userL = Session.getUserL();
 		$scope.userB = Session.getUserB();
@@ -31,6 +31,7 @@ angular.module('myApp.controllers', [])
 				user_id = user.uid;
 			} else {
 				console.log("User is not logged in! Redirecting to main page.");
+				$window.location.href='#/main/'
 			}
 		});
 
@@ -57,13 +58,14 @@ angular.module('myApp.controllers', [])
 			Session.changeSchool(school);
 		};
 	})
-	.controller('signup', function($scope, Session, $firebase, $window){
+	.controller('signup', function($scope, Session, $firebase, $window, $cookieStore){
 		var ref = new Firebase("https://classnotes.firebaseio.com");
 		var auth = new FirebaseSimpleLogin(ref, function(error, user) {
 			if (error) {
 				// an error occurred while attempting login
 				console.log(error);
 			} else if (user) {
+				$window.location.href = '#/main/';
 				// user authenticated with Firebase
 				$scope.user = user
 				user_id = user.uid;
@@ -98,6 +100,7 @@ angular.module('myApp.controllers', [])
 						password: $scope.user.password,
 						rememberMe: true
 					});
+					$cookieStore.put('loggedIn', true);
 				}else{
 					console.log(error);
 					alert("There was an error creating a user! The email is probably already in use!");
@@ -106,7 +109,7 @@ angular.module('myApp.controllers', [])
 		};
 
 	})
-	.controller('login', function($scope, Session, $firebase, $window){
+	.controller('login', function($scope, Session, $firebase, $window, $cookieStore){
 		var login = new Firebase("https://classnotes.firebaseio.com");
 		var users = new Firebase("https://classnotes.firebaseio.com/users");
 		$scope.users = $firebase(users);
@@ -117,7 +120,7 @@ angular.module('myApp.controllers', [])
 			} else if (user) {
 				user_id = user.uid;
 				Session.login(user); //dodamo userja
-
+				$window.location.href = '#/main/';
 				if (user.provider === "facebook")
 				{
 					if (typeof $scope.users[user.uid] === "undefined" )
@@ -155,7 +158,7 @@ angular.module('myApp.controllers', [])
 				}
 			
 			} else {
-				console.log("user is logged out");
+				console.log("User is logged out!");
 			}
 		}); 
 		$scope.loginPW = function() {
@@ -163,26 +166,31 @@ angular.module('myApp.controllers', [])
 				email: $scope.login.email,
 				password: $scope.login.password,
 			});
+			$cookieStore.put('loggedIn', true);
+			
 		}
 		$scope.loginFB = function() {
 			auth.login('facebook', {
 				scope: 'email,user_likes'
 			});
+			$cookieStore.put('loggedIn', true);
 		}
 		$scope.loginGOOGLE = function(){
 			auth.login('google', {
 			  scope: 'https://www.googleapis.com/auth/plus.login'
 			});
+			$cookieStore.put('loggedIn', true);
 		}
 		$scope.loginTWITTER = function(){
 			auth.login('twitter', {
 			});
+			$cookieStore.put('loggedIn', true);
 		}
 		
 	})
-	.controller('navBarController', function($scope, Session, $firebase, $window){
+	.controller('navBarController', function($scope, Session, $firebase, $window, $cookieStore){
 		$scope.$watch(Session.isAuthenticated, function() {
-			$scope.auth = Session.isAuthenticated();
+			$scope.auth = $cookieStore.get('loggedIn');
 			$scope.userL = Session.getUserL();
 			$scope.userB = Session.getUserB();
 		});
@@ -200,5 +208,6 @@ angular.module('myApp.controllers', [])
 			auth.logout();
 			Session.setAuthenticated(false);
 			$window.location.href = '#/main/';
+			$cookieStore.put('loggedIn', false);
 		}
 	});

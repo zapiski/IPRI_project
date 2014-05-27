@@ -5,7 +5,7 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('myApp.services', ['firebase'])
+angular.module('myApp.services', ['firebase', 'ngCookies'])
 	.factory('Session', function($firebase) {
     var authenticated = false;
     var userL = {};
