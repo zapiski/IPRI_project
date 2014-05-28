@@ -17,7 +17,7 @@ Search:   <input ng-model="query">
 </div>
 <div class="col-md-4"></div>
 </div>
-<div class="row list-animate" ng-repeat="class in classes | filter: query | orderBy: orderProp">
+<div class="row list-animate" ng-repeat="class in classes | orderBy: orderProp">
 <div class="col-md-6">
 	<div class="list-group">
 
