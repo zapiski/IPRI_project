@@ -21,15 +21,15 @@ angular.module('myApp.controllers', [])
 	})
 	.controller('sideBarController', function($scope, Session, $firebase, $cookieStore)
 	{
-		var unis = new Firebase("https://classnotes.firebaseio.com/Universities");
+		var unis = new Firebase("https://classnotes.firebaseio.com/Universities/children");
 		$scope.unis = $firebase(unis);
 
 	})
 	.controller('uploadNote', function($scope, Session, $firebase, $cookieStore, $routeParams)
 	{
-		var universities = new Firebase("https://classnotes.firebaseio.com/Universities");
+		var universities = new Firebase("https://classnotes.firebaseio.com/Universities/children/");
 		$scope.universities = $firebase(universities);
-
+		console.log($scope.universities);
 	
 	})
 	.controller('uploadNoteUni', function($scope, Session, $firebase, $cookieStore, $routeParams)
@@ -38,23 +38,23 @@ angular.module('myApp.controllers', [])
 
 			$scope.currentUni = $routeParams.uniName;
 
-			var faculties = new Firebase("https://classnotes.firebaseio.com/Universities/" + $routeParams.uniName + "/faculties");	
+			var faculties = new Firebase("https://classnotes.firebaseio.com/Universities/children/" + $routeParams.uniName + "/children/");	
 			$scope.faculties = $firebase(faculties);
+	
 
-		
 	})
     .controller('uploadNoteFaculty', function($scope, Session, $firebase, $cookieStore, $routeParams)
 	{
-				var universities = new Firebase("https://classnotes.firebaseio.com/Universities");
-				$scope.universities = $firebase(universities);
+		var universities = new Firebase("https://classnotes.firebaseio.com/Universities/children/");
+		$scope.universities = $firebase(universities);
 
 		    
-		    var faculties = new Firebase("https://classnotes.firebaseio.com/Universities/" + $routeParams.uniName + "/faculties");	
+			var faculties = new Firebase("https://classnotes.firebaseio.com/Universities/children/" + $routeParams.uniName + "/children/");	
 			$scope.faculties = $firebase(faculties);
 
 			$scope.currentUni = $routeParams.uniName;
 			$scope.currentFaculty = $routeParams.facultyName;
-			var classes = new Firebase("https://classnotes.firebaseio.com/Universities/" + $routeParams.uniName + "/faculties/" + $routeParams.facultyName + "/classes");	
+			var classes = new Firebase("https://classnotes.firebaseio.com/Universities/children/" + $routeParams.uniName + "/children/" + $routeParams.facultyName + "/children");	
 			$scope.classes = $firebase(classes);
 
 		
@@ -62,18 +62,18 @@ angular.module('myApp.controllers', [])
 	 .controller('uploadNoteClass', function($scope, Session, $firebase, $cookieStore, $routeParams)
 	{
 
-			var universities = new Firebase("https://classnotes.firebaseio.com/Universities");
-			$scope.universities = $firebase(universities);
+		var universities = new Firebase("https://classnotes.firebaseio.com/Universities/children/");
+		$scope.universities = $firebase(universities);
 		    
-		    var faculties = new Firebase("https://classnotes.firebaseio.com/Universities/" + $routeParams.uniName + "/faculties");	
+			var faculties = new Firebase("https://classnotes.firebaseio.com/Universities/children/" + $routeParams.uniName + "/children/");	
 			$scope.faculties = $firebase(faculties);
 
-			var classes = new Firebase("https://classnotes.firebaseio.com/Universities/" + $routeParams.uniName + "/faculties/" + $routeParams.facultyName + "/classes");	
-			$scope.classes = $firebase(classes);			
+			var classes = new Firebase("https://classnotes.firebaseio.com/Universities/children/" + $routeParams.uniName + "/children/" + $routeParams.facultyName + "/children");	
+			$scope.classes = $firebase(classes);
 			$scope.currentUni = $routeParams.uniName;
 			$scope.currentFaculty = $routeParams.facultyName;
 			$scope.currentClass = $routeParams.className;
-			var noteLocation = new Firebase("https://classnotes.firebaseio.com/Universities/" + $routeParams.uniName + "/faculties/" + $routeParams.facultyName + "/classes/" + $routeParams.className + "/notes");	
+			var noteLocation = new Firebase("https://classnotes.firebaseio.com/Universities/children/" + $routeParams.uniName + "/children/" + $routeParams.facultyName + "/children/" + $routeParams.className + "/children");	
 			$scope.noteLocation = $firebase(noteLocation)
 
 			
