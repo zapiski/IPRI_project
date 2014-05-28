@@ -64,6 +64,10 @@ angular.module('myApp.services', ['firebase', 'ngCookies'])
         getUserL: function() {
             return userL;
         },
+        getUserEmail: function()
+        {
+            return userL.email;
+        },
 		getUserB: function() {
             return userB;
         },

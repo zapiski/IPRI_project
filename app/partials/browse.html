@@ -38,8 +38,9 @@
 	<h4>Decription: {{note.description}}</h4>
 	</div>
 	<br><br>
-	<button type="button" class="btn btn-info btn-lg btn-block">View</button>
-	<button type="button" class="btn btn-info btn-lg btn-block">Download</button>
+ 
+
+	<form action={{note.fileURL}}><button type="submit" class="btn btn-info btn-lg btn-block">View</button></form>
 	
 
 
@@ -53,5 +54,22 @@
       	        <div class="col-md-2">
       	        </div>
 		</div>
+
+
+
+<!-- shim is needed to support upload progress/abort for HTML5 and non-HTML5 FormData browsers.-->
+<!-- use html5-shim.js instead if you just support HTML5 browsers and you need progress event-->
+<!-- Note: shim.js MUST BE PLACED BEFORE angular.js and angular-file-upload.js AFTER angular.js-->
+
+<div ng-controller="uploadController">
+  <input type="text" ng-model="myModelObj">
+  <input type="file" ng-file-select="onFileSelect($files)" >
+  <input type="file" ng-file-select="onFileSelect($files)" multiple>
+  <div ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="optional-css-class"
+        ng-show="dropSupported">drop files here</div>
+  <div ng-file-drop-available="dropSupported=true" 
+        ng-show="!dropSupported">HTML5 Drop File is not supported!</div>
+  <button ng-click="upload.abort()">Cancel Upload</button>
+</div>
       	
  </div> 
