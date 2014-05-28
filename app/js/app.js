@@ -9,7 +9,6 @@ angular.module('myApp', [
   'myApp.directives',
   'myApp.controllers',
   'myApp.animations',
-
   'lr.upload',
   'angularFileUpload'
 ]).
