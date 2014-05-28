@@ -7,6 +7,9 @@ angular.module('myApp.controllers', [])
 		$scope.auth = $cookieStore.get('loggedIn');
 		$scope.userL = Session.getUserL();
 		$scope.userB = Session.getUserB();
+
+		
+	
 	
 		var classes = new Firebase("https://classnotes.firebaseio.com/classes");
 		$scope.classes = $firebase(classes);
@@ -18,6 +21,51 @@ angular.module('myApp.controllers', [])
 	
 		var notes = new Firebase("https://classnotes.firebaseio.com/notes");
 		$scope.notes = $firebase(notes);
+	})
+	.controller('browseFaculties', function($scope, Session, $firebase, $cookieStore, $routeParams, $location) {
+					
+					$scope.go = function (first,second) {
+						console.log(first);
+						console.log(second);
+						var path = "/browseClasses/" + first + "/" + second;
+						console.log(path);
+  						$location.path( path );
+					};
+
+			$scope.currentUni = $routeParams.uniName;
+			var faculties = new Firebase("https://classnotes.firebaseio.com/Universities/children/" + $routeParams.uniName + "/children/");	
+			$scope.faculties = $firebase(faculties);
+
+
+
+
+	})
+	.controller('browseClasses', function($scope, Session, $firebase, $cookieStore, $routeParams, $location) {
+
+				$scope.go = function (first,second,third) {
+						var path = "/browseNotes/" + first + "/" + second + "/" + third;
+						console.log(path);
+  						$location.path( path );
+					};
+
+			$scope.currentUni = $routeParams.uniName;
+			$scope.currentFaculty = $routeParams.facultyName;
+			var classes = new Firebase("https://classnotes.firebaseio.com/Universities/children/" + $routeParams.uniName + "/children/" + $routeParams.facultyName + "/children");	
+			$scope.classes = $firebase(classes);
+
+
+
+	})
+	.controller('browseNotes', function($scope, Session, $firebase, $cookieStore, $routeParams, $location) {
+		$scope.currentUni = $routeParams.uniName;
+		$scope.currentFaculty = $routeParams.facultyName;
+		$scope.currentClass = $routeParams.className;	
+		console.log($routeParams.className);
+		console.log("pridem sm");
+		var notes = new Firebase("https://classnotes.firebaseio.com/Universities/children/" + $routeParams.uniName + "/children/" + $routeParams.facultyName + "/children/" + $routeParams.className + "/children");
+		$scope.notes = $firebase(notes);
+		console.log($scope.notes);
+
 	})
 	.controller('sideBarController', function($scope, Session, $firebase, $cookieStore)
 	{
