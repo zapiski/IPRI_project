@@ -11,7 +11,7 @@ app.post('/file/:filename', function(req, res) {
     res.statusCode = 400;
     return res.send('Error 400: Post syntax incorrect.');
   } 
-  req.pipe(fs.createWriteStream("app/files/" + req.params.filename));
+  req.pipe(fs.createWriteStream("./app/files/" + req.params.filename));
   fs.writeFile("app/files/" + req.body.name, req.body.file, function(err) {
     if(err) {
         console.log(err);

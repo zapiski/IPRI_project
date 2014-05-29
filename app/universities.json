@@ -1,147 +1,213 @@
 {
-    "name": "Universities",
-    "children": [
+  "children": [
+    {
+      "children": [
         {
-            "name": "University of Ljubljana",
-            "children": [
+          "children": [
+            {
+              "children": [
                 {
-                    "name": "Faculty for Mathematics and Physics",
-                    "children": [
-                        {
-                            "name": "ISRM",
-                            "children": [
-                                {
-                                    "name": "LA",
-                                    "children": [
-                                        {
-                                            "name": "Notes La"
-                                        },
-                                        {
-                                            "name": "Notes LA 1. year"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-					]
-                    },
-                    {
-                        "name": "Faculty for Computer Science and Informatics",
-                        "children": [
-                            {
-                                "name": "ISRM",
-                                "children": [
-                                    {
-                                        "name": "LA",
-                                        "children": [
-                                            {
-                                                "name": "Notes La"
-                                            },
-                                            {
-                                                "name": "Notes LA 1. year"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "UNI",
-                                "children": [
-                                    {
-                                        "name": "OP",
-                                        "children": [
-                                            {
-                                                "name": "Notes Op"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "name": "Faculty of Engineering",
-                        "children": [
-                            {
-                                "name": "UNI",
-                                "children": [
-                                    {
-                                        "name": "OR",
-                                        "children": [
-                                            {
-                                                "name": "Notes Or"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "name": "Medical Faculty",
-                        "children": [
-                            {
-                                "name": "UNI",
-                                "children": [
-                                    {
-                                        "name": "Ha",
-                                        "children": [
-                                            {
-                                                "name": "Notes Ha"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "name": "University of Primorska",
-                "children": [
-                    {
-                        "name": "Faculty of Engineering",
-                        "children": [
-                            {
-                                "name": "UNI",
-                                "children": [
-                                    {
-                                        "name": "OR",
-                                        "children": [
-                                            {
-                                                "name": "Notes Or"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "name": "University of Maribor",
-                "children": [
-                    {
-                        "name": "Faculty of Engineering",
-                        "children": [
-                            {
-                                "name": "UNI",
-                                "children": [
-                                    {
-                                        "name": "OR",
-                                        "children": [
-                                            {
-                                                "name": "Notes Or"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
+                  "userUploaded": "user666",
+                  "description": "kao neki zapiski",
+                  "year": 2013,
+                  "name": "noteID2",
+                  "noteURL": "files/noteID2.pdf"
+                }
+              ],
+              "years": "1,2,3,4,5",
+              "name": "AK",
+              "professor": "Matjaž Stovenog"
             }
-        ]
+          ],
+          "name": "Faculty for Mathematics and Physics"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "description": "Anatomija",
+                  "year": "2014",
+                  "name": "Rok uploadal 21:29",
+                  "noteURL": "files/Rok uploadal 21:29"
+                },
+                {
+                  "description": "Anatomija",
+                  "year": "2014",
+                  "name": "Rok uploadal 21:29",
+                  "noteURL": "files/Rok uploadal 21:29"
+                },
+                {
+                  "description": "dfasds",
+                  "year": "SADA",
+                  "name": "ASDASD",
+                  "noteURL": "files/ASDASD"
+                },
+                {
+                  "description": "zapiski za anatomijo, večinoma so, več barv",
+                  "year": "2013",
+                  "name": "zapiskiAnatomija2014.pdf",
+                  "noteURL": "files/zapiskiAnatomija2014.pdf"
+                },
+                {
+                  "userUploaded": "user78899",
+                  "year": 2012,
+                  "name": "noteID1",
+                  "noteURL": "/notes/noteID1.pdf",
+                  "opis": "moji zapiski"
+                },
+                {
+                  "description": "dfasds",
+                  "year": "SADA",
+                  "name": "ASDASD",
+                  "noteURL": "files/ASDASD"
+                }
+              ],
+              "years": "1,2,3,4",
+              "name": "Human Anatomy",
+              "professor": "Iva Skleda"
+            }
+          ],
+          "name": "Medical Faculty"
+        }
+      ],
+      "name": "University of Primorska"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "description": "bZapiski za AK",
+                  "year": "1920",
+                  "name": "zapiskiAK210213",
+                  "noteURL": "files/zapiskiAK210213"
+                },
+                {
+                  "description": "asdf",
+                  "year": "2013",
+                  "name": "APG",
+                  "noteURL": "files/APG"
+                },
+                {
+                  "description": "Moji zapiski za AK. Manjkal sem dve uri, takrat ko je profesor predaval polare.",
+                  "year": "2013",
+                  "name": "zapiskiAK.pdf",
+                  "noteURL": "files/zapiskiAK.pdf"
+                },
+                {
+                  "description": "blabla",
+                  "year": 2013,
+                  "name": "npteID123",
+                  "noteURL": "zapiski/noteID123.pdf"
+                }
+              ],
+              "name": "AK",
+              "professor": "Matej Marko"
+            }
+          ],
+          "name": "Faculty for Mathematics and Physics"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "userUploaded": "username1",
+                  "description": "APG notes",
+                  "year": 2014,
+                  "name": "noteID451",
+                  "noteURL": "files/noteID451"
+                },
+                {
+                  "userUploaded": "user565",
+                  "description": "APG notes stari",
+                  "year": 2002,
+                  "name": "noteID678",
+                  "noteURL": "files/noteID678"
+                }
+              ],
+              "years": "1,2",
+              "name": "Afina in Projektivna Geometrija",
+              "professor": "Živo Vavpetič"
+            },
+            {
+              "children": [
+                {
+                  "userUploaded": "user341d",
+                  "description": "tpo zapiski kul",
+                  "year": 2013,
+                  "name": "noteID889",
+                  "noteURL": "files/noteID889.pdf"
+                },
+                {
+                  "description": "nekej",
+                  "year": "2014",
+                  "name": "TPO****",
+                  "noteURL": "files/TPO****"
+                }
+              ],
+              "years": "1,2",
+              "name": "Teorija Programske Opreme",
+              "professor": "Viljan Mahnič"
+            }
+          ],
+          "name": "Faculty for Computer Science and Informatics"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "userUploaded": "user567hn",
+                  "description": "asda",
+                  "year": 2014,
+                  "name": "noteID551",
+                  "noteURL": "noteID551.pdf"
+                }
+              ],
+              "years": "1,2",
+              "name": "Tehnical drawing",
+              "professor": "Janez Novak"
+            }
+          ],
+          "name": "Faculty of Engineering"
+        }
+      ],
+      "name": "University of Ljubljana"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "userUploaded": "user768",
+                  "description": "opis opis opis",
+                  "year": 1999,
+                  "name": "noteID231",
+                  "noteURL": "files/noteID231.pdf"
+                },
+                {
+                  "description": "wedwad",
+                  "year": "asda",
+                  "name": "adsads",
+                  "noteURL": "files/adsads"
+                }
+              ],
+              "years": "1,2",
+              "name": "Tehnical drawing",
+              "professor": "Mirko Mogovol"
+            }
+          ],
+          "name": "Faculty of Engineering"
+        }
+      ],
+      "name": "University of Maribor"
     }
+  ],
+  "name": "Universities"
+}
