@@ -2,13 +2,8 @@
 
 
 <div class = "row divrow">
-	   <div class="col-md-4">
-		<div class="input-group input-group">
-  		<span class="input-group-addon"></span>
-  		<input type="text" class="form-control" ng-model="newnote.currentUni" placeholder="{{currentUni}}">
-		</div>	
-	   </div>
-	   <div class="col-md-4">
+	   
+	   <div class="col-md-2">
    	  		<button type="button" class="btn btn-default dropdown-toggle" 
 		     	data-toggle="dropdown">
 		      	Choose university <span class="caret"></span>
@@ -19,15 +14,16 @@
 		    	</div>
 		   </ul>
 		</div>
-</div>
-<div class = "row divrow">
-	   <div class="col-md-4">
+		<div class="col-md-6">
 		<div class="input-group input-group">
   		<span class="input-group-addon"></span>
-  		<input type="text" class="form-control"ng-model="newnote.currentFaculty" placeholder="{{currentFaculty}}">
+  		<input type="text" class="form-control" ng-model="newnote.currentUni" placeholder="{{currentUni}}" readonly>
 		</div>	
 	   </div>
-	   <div class="col-md-4">
+</div>
+<div class = "row divrow">
+	   
+	   <div class="col-md-2">
    	  		<button type="button" class="btn btn-default dropdown-toggle" 
 		     	data-toggle="dropdown">
 		      	Choose faculty<span class="caret"></span>
@@ -38,15 +34,16 @@
 		    	</div>
 		   </ul>
 		</div>
-</div>
-<div class = "row divrow">
-	   <div class="col-md-4">
+		<div class="col-md-6">
 		<div class="input-group input-group">
   		<span class="input-group-addon"></span>
-  		<input type="text" class="form-control" ng-model="newnote.currentClass" placeholder="{{currentClass}}">
+  		<input type="text" class="form-control"ng-model="newnote.currentFaculty" placeholder="{{currentFaculty}}" readonly>
 		</div>	
 	   </div>
-	   <div class="col-md-4">
+</div>
+<div class = "row divrow">
+	   
+	   <div class="col-md-2">
    	  		<button type="button" class="btn btn-default dropdown-toggle" 
 		     	data-toggle="dropdown">
 		      	Choose class<span class="caret"></span>
@@ -57,9 +54,15 @@
 		    	</div>
 		   </ul>
 		</div>
+		<div class="col-md-6">
+		<div class="input-group input-group">
+  		<span class="input-group-addon"></span>
+  		<input type="text" class="form-control" ng-model="newnote.currentClass" placeholder="{{currentClass}}" readonly>
+		</div>	
+	   </div>
 </div>
 
-
+<br>
 
 <div class="row">
   <div class="col-md-8">
