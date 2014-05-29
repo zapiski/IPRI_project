@@ -69,3 +69,7 @@ input[readonly]{
 	background-color:white !important;
 	cursor: text !important;
 }
+
+.divrow{
+	margin-bottom: 5px;
+}

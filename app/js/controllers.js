@@ -107,7 +107,7 @@ angular.module('myApp.controllers', [])
 
 		
 	})
-	 .controller('uploadNoteClass', function($scope, Session, $firebase, $cookieStore, $routeParams, $upload)
+	 .controller('uploadNoteClass', function($scope, Session, $firebase, $cookieStore, $routeParams, $upload, $window)
 	{
 
 		var universities = new Firebase("https://classnotes.firebaseio.com/Universities/children/");
@@ -132,10 +132,11 @@ angular.module('myApp.controllers', [])
 					"name": $scope.newnote.name,
 					"description": $scope.newnote.description,
 					"year": $scope.newnote.year,
-					"noteURL": "files/"+ $scope.newnote.name,
+					"noteURL": "files/"+ $('#fileInfo').val(),
 				}
 				console.log("haha")
-			$scope.noteLocation.$add(note);
+				$scope.noteLocation.$add(note);
+				$window.location.href = '#/uploadNote/';
 
 			}
 
@@ -144,13 +145,13 @@ angular.module('myApp.controllers', [])
 			for (var i = 0; i < $files.length; i++) {
 			  var file = $files[i];
 			  $scope.upload = $upload.upload({
-				url: 'files/', //upload.php script, node.js route, or servlet url
+				url: 'file', //upload.php script, node.js route, or servlet url
 				method: 'POST',
 				// method: 'POST' or 'PUT',
 				// headers: {'header-key': 'header-value'},
 				// withCredentials: true,
 				data: {myObj: $scope.myModelObj},
-				file: file, // or list of files: $files for html5 only
+				'file': file, // or list of files: $files for html5 only
 				/* set the file formData name ('Content-Desposition'). Default is 'file' */
 				//fileFormDataName: myFile, //or a list of names for multiple files (html5).
 				/* customize how data is added to formData. See #40#issuecomment-28612000 for sample code */
